@@ -46,5 +46,21 @@ function addDatosFarmacias() {
         });
         map.addControl(searchControl);
 
+        var farmaciasPuntoStyle = new L.GeoJSON.AJAX('datos/farmacias.geojson', {
+
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 6,
+                    fillColor: "#00ff00",
+                    color: "#ffffff",
+                    weight: 3,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                })
+            }
+        }).addTo(map);
+
+
+      
 
 } //fin funcion
