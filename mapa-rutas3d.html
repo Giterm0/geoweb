@@ -33,7 +33,23 @@
             map.on('load', function () {
                 add3D('icgc-dem'); //mapbox-dem  o null
                 addRutas();
+                rotarCamara(0);
+
             }); //fin onload
+
+            map.on("click",function(e){
+                finalRotarCamara()
+
+                });
+            map.on("zoomstart",function(e){
+                finalRotarCamara()
+
+                });  
+
+            map.on("zoomend",function(e){
+                rotarCamara(0);
+
+            });          
 
         } // final init
     </script>

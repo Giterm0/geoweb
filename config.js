@@ -57,6 +57,42 @@ var config = {
             callback: '',
             onChapterEnter: [],
             onChapterExit: []
+        },{
+            id: 'volcan3',
+            alignment: 'left',
+            hidden: false,
+            title: 'Volcán Chimborazo, Ecuador',
+            image: 'https://media.istockphoto.com/photos/chimborazo-volcano-and-sheep-picture-id480698816?k=20&m=480698816&s=612x612&w=0&h=H3B5R9ogPZxIKWkf0TD6SXm2bZi_2XUVRZWfUTP6oO4=',
+            description: 'El Chimborazo es el volcán y la montaña más alta en el Ecuador, y su cumbre es el punto del planeta más alejado de su centro​ con una altitud de 6263,47 metros sobre el nivel del mar. Su última erupción conocida se cree que se produjo alrededor de 550 d.C.',
+            location: {
+                center: [-78.80777, -1.46777],
+                zoom: 13.51,
+                pitch: 60.00,
+                bearing: 0.00
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
+        },{
+            id: 'volcan4',
+            alignment: 'right',
+            hidden: false,
+            title: 'Volcán Kilimanjaro, Tanzania',
+            image: '',
+            description: '<iframe width="560" height="315" src="https://www.youtube.com/embed/61hkC0wTzzo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            location: {
+                center: [37.25562, -3.08950],
+                zoom: 11.00,
+                pitch: 60.00,
+                bearing: 61.60
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: true,
+            callback: '',
+            onChapterEnter: [],
+            onChapterExit: []
         }
     ]
 };
