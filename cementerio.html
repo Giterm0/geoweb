@@ -39,7 +39,12 @@
                 },
                 trackUserLocation: true
             }));
-            map.dragPan.enable();
+            map.dragPan.enable({
+                linearity: 0.3,
+                easing: t => t,
+                maxSpeed: 1400,
+                deceleration: 2500
+            });
 
             var marker = new mapboxgl.Marker()
             .setLngLat([2.838, 41.972])
