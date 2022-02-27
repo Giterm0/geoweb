@@ -1,0 +1,151 @@
+<html>
+    <head>
+    <meta charset='utf-8' />
+    <title>Visor deslave</title>
+
+    <style>
+        h3 {text-align: left; font-family: Arial; font-size: 18px; color: #000000; padding: 0px 10px; }
+        p {text-align: left; font-family: Verdana; font-size: 11px; color: #000000; padding: 0px 10px; margin-bottom: 5px}
+        .header {height: 100px; position: relative; background-color: #8bbbbd; }
+    </style>  
+
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='css/estilobase.css' rel='stylesheet' />
+
+    <script src='js/3d_final.js'></script>
+    <script src='js/3d_final2.js'></script>
+    <script>
+        //Añadir vuestor token!!
+        var map;
+        function init() {
+            mapboxgl.accessToken =
+                'pk.eyJ1IjoibWFwZ3VpMTEzIiwiYSI6ImNreWJxMzFjeDA5MXAyd3F2dGt4cGF3emUifQ.8udZrNyXjXZ74xnPtPL_og';
+             map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapgui113/ckzu20wvf000a14lqcbyk7n6b',
+                center: [-78.49959, -0.18301],
+                zoom: 14,
+                attributionControl: true,
+                pitch: 40,
+                hash: true
+            });
+
+            map.addControl(new mapboxgl.AttributionControl({ compact: true }));
+            map.addControl(new mapboxgl.NavigationControl());
+            map.addControl(new mapboxgl.FullscreenControl());
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.51132, -0.19184])
+            .setPopup(new mapboxgl.Popup().setHTML('<p><strong>ZONA 0: </strong> Área del inicio de la afectación urbana</p> <a href="https://images.app.goo.gl/t2xzErvxgDPDGYn26" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.50868, -0.19294])
+            .setPopup(new mapboxgl.Popup().setHTML('<p><strong>Parque Pambachupa: </strong> Vegetación arrasada y viviendas aledañas afectadas</p> <a href="https://images.app.goo.gl/kmrpvb8bpFqFzTzC7" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.510425, -0.192521])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Calle destuída por el flujo de lodo</p> <a href="https://images.app.goo.gl/trnB6QzNXUvQcWog7" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.505755, -0.195593])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Av. La Gasca, principal desfogue del flujo de lodo</p> <a href="https://images.app.goo.gl/rf6qNDBkJRF3JfxH9" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.512821, -0.190570])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Túnel bajo Av. Occidental, encauce del flujo de lodo</p> <a href="https://images.app.goo.gl/hED91umTY2jbdbgq6" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.507417, -0.193570])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Vehículos policiales volcados</p> <a href="https://images.app.goo.gl/wm9pemh254YY6ajy8" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.502362, -0.196641])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Av. La Gasca afectada por deslave</p> <a href="https://images.app.goo.gl/sMNYP7DFL5WuW6yv8" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.514287, -0.190449])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Quebrada El Tejado, zona de origen del deslave</p> <a href="https://images.app.goo.gl/7Q6yWLg9ZLcQLMgm7" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            var marker = new mapboxgl.Marker()
+            .setLngLat([-78.510347, -0.194582])
+            .setPopup(new mapboxgl.Popup().setHTML('<p>Incorporación del flujo de lodo a la Av. La Gasca</p> <a href="https://images.app.goo.gl/LuTdrxv2RDDjyb9CA" target="_blank">Imagen</a>'))
+            .addTo(map);
+
+            map.on('load', function () {
+                add3D('mapbox-dem');
+                rotarCamara(0);
+
+            }); //fin onload
+
+            map.on("click",function(e){
+                finalRotarCamara()
+
+                });
+            map.on("zoomstart",function(e){
+                finalRotarCamara()
+
+                });  
+
+            map.on("zoomend",function(e){
+                rotarCamara(0);
+
+            });  
+                    
+
+        } // final init
+
+        function add3D() {
+
+            map.addSource('mapbox-dem', {
+                'type': 'raster-dem',
+                'url': 'mapbox://mapbox.mapbox-terrain-dem-v1',
+                'tileSize': 512,
+                'maxzoom': 14
+            });
+
+            map.addLayer({
+                'id': 'sky',
+                'type': 'sky',
+                'paint': {
+                    'sky-type': 'atmosphere',
+                    'sky-atmosphere-sun': [0.0, 0.0],
+                    'sky-atmosphere-sun-intensity': 15
+                }
+            });
+
+
+            map.setTerrain({
+                'source': 'mapbox-dem',
+                'exaggeration': 1.5
+            });
+
+        } //fin funcion
+        
+
+    </script>
+    </head>
+
+    <body onload="init()">
+        <div class="header">
+            <h3>Deslave Barrio La Gasca, Quito-Ecuador (31/01/2022)</h3>
+            <p>Este visor muestra el recorrido del flujo producto del deslave debido a una acumulación de agua, desde la Quebrada El Tejado (área protegida en color verde claro y transparencia) 
+                hasta una zona central de la ciudad, que dejó un saldo de 28 personas fallecidas, 52 heridas e innumerables daños materiales. La línea roja corresponde al flujo 
+                de mayor volúmen, mientras que la verde a un flujo secundario. El sistema de quebradas está simbolizado en línea celeste entrecortada. La zona de mayor afectación 
+                está representada en volumetría. Se resaltan puntos de interés con enlaces a imágenes que circularon en medios digitales aquellos días. </p>
+        </div>
+    
+        <div id="map"></div>
+
+    </body>
+
+    </html>
