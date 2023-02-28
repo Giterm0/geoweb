@@ -6,7 +6,7 @@
     <style>
         h3 {text-align: left; font-family: Arial; font-size: 18px; color: #000000; padding: 0px 10px; }
         p {text-align: left; font-family: Verdana; font-size: 11px; color: #000000; padding: 0px 10px; margin-bottom: 5px}
-        .header {height: 100px; position: relative; background-color: #8bbbbd; }
+        div.header {height: 100px; position: relative; background-color: #8bbbbd; }
     </style>  
 
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
@@ -43,7 +43,7 @@
 
             var marker = new mapboxgl.Marker()
             .setLngLat([-78.50868, -0.19294])
-            .setPopup(new mapboxgl.Popup().setHTML('<p><strong>Parque Pambachupa: </strong> Vegetación arrasada y viviendas aledañas afectadas</p> <a href="https://images.app.goo.gl/kmrpvb8bpFqFzTzC7" target="_blank">Imagen</a>'))
+            .setPopup(new mapboxgl.Popup().setHTML('<p><strong>Parque Pambachupa: </strong> Vegetación arrasada y viviendas aledañas afectadas</p> <a href="https://images.app.goo.gl/JTSVXVrfWpgiGFbG6" target="_blank">Imagen</a>'))
             .addTo(map);
 
             var marker = new mapboxgl.Marker()
@@ -123,7 +123,6 @@
                 }
             });
 
-
             map.setTerrain({
                 'source': 'mapbox-dem',
                 'exaggeration': 1.5
@@ -137,13 +136,18 @@
 
     <body onload="init()">
         <div class="header">
+            
             <h3>Deslave Barrio La Gasca, Quito-Ecuador (31/01/2022)</h3>
-            <p>Este visor muestra el recorrido del flujo producto del deslave debido a una acumulación de agua, desde la Quebrada El Tejado (área protegida en color verde claro y transparencia) 
-                hasta una zona central de la ciudad, que dejó un saldo de 28 personas fallecidas, 52 heridas e innumerables daños materiales. La línea roja corresponde al flujo 
-                de mayor volúmen, mientras que la verde a un flujo secundario. El sistema de quebradas está simbolizado en línea celeste entrecortada. La zona de mayor afectación 
-                está representada en volumetría. Se resaltan puntos de interés con enlaces a imágenes que circularon en medios digitales aquellos días. </p>
+            <p>Este visor muestra el recorrido del deslave, ocurrido por una acumulación de agua, desde la Quebrada El Tejado (área protegida en color verde claro y transparencia) 
+                hasta una zona central de la ciudad, que dejó un saldo de 28 personas fallecidas, 52 heridas e cuantiosos daños materiales. La línea roja corresponde al flujo 
+                principal, mientras que la verde a un flujo secundario. El sistema de quebradas está simbolizado en línea celeste entrecortada. La zona de mayor afectación 
+                está representada en volumetría. Se resaltan puntos de interés con enlaces a imágenes que circularon en medios digitales aquellos días. 
+            </p>
+           
         </div>
     
+        
+
         <div id="map"></div>
 
     </body>
